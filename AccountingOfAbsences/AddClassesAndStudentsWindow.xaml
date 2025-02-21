@@ -1,0 +1,94 @@
+﻿<Window x:Class="AccountingOfAbsences.AddClassesAndStudentsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Добавление классов и учащихся" Height="400" Width="600" WindowStartupLocation="CenterScreen"
+        Background="#F7F9FC">
+    <Window.Resources>
+        <!-- Общие стили для кнопок -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#4CAF50" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Height" Value="35" />
+            <Setter Property="Width" Value="110" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            
+        </Style>
+        <!-- Стиль для текстовых блоков -->
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="#333" />
+            <Setter Property="Margin" Value="5" />
+        </Style>
+        <!-- Стиль для текстовых полей -->
+        <Style TargetType="TextBox">
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Width" Value="220" />
+            <Setter Property="BorderBrush" Value="#CCCCCC" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <!-- Стиль для выпадающих списков -->
+        <Style TargetType="ComboBox">
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Width" Value="220" />
+            <Setter Property="BorderBrush" Value="#CCCCCC" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <!-- Стиль для GroupBox -->
+        <Style TargetType="GroupBox">
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Foreground" Value="#333" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="BorderBrush" Value="#CCCCCC" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <!-- Панель для добавления классов -->
+        <GroupBox Header="Добавить Класс" VerticalAlignment="Top" Height="130">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBlock Text="Название класса:" Width="130" />
+                <TextBox Name="ClassNameTextBox" />
+                <Button Content="Добавить" Click="AddClassButton_Click" Height="67" />
+            </StackPanel>
+        </GroupBox>
+
+        <!-- Панель для добавления учащихся -->
+        <GroupBox Header="Добавить Учащегося" Margin="0,140,0,0" VerticalAlignment="Top" Height="190">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="ФИО учащегося:" Width="130" />
+                    <TextBox Name="StudentNameTextBox" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Выбрать класс:" Width="130" />
+                    <ComboBox Name="ClassComboBox" />
+                    <Button Content="Добавить" Click="AddStudentButton_Click" Height="61" />
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <!-- Кнопки закрытия -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10">
+            <Button Content="Закрыть" Click="CloseButton_Click" Background="#FF3B3B" Height="49" />
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,106 @@
+﻿<Window x:Class="AccountingOfAbsences.EditRecordWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Редактировать запись" Height="350" Width="500" WindowStartupLocation="CenterScreen"
+        Background="#F7F9FC">
+    <Window.Resources>
+        <!-- Общий стиль для кнопок -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#4CAF50" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Width" Value="120" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            
+        </Style>
+        <!-- Стиль для текстовых блоков -->
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="#333" />
+            <Setter Property="Margin" Value="5" />
+        </Style>
+        <!-- Стиль для текстовых полей -->
+        <Style TargetType="TextBox">
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Width" Value="300" />
+            <Setter Property="BorderBrush" Value="#CCCCCC" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <!-- Стиль для выпадающих списков -->
+        <Style TargetType="ComboBox">
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Width" Value="300" />
+            <Setter Property="BorderBrush" Value="#CCCCCC" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <!-- Стиль для DatePicker -->
+        <Style TargetType="DatePicker">
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Width" Value="300" />
+            <Setter Property="BorderBrush" Value="#CCCCCC" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+    </Window.Resources>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Выбор ученика -->
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+            <TextBlock Text="Ученик:" VerticalAlignment="Center" Width="120" />
+            <ComboBox Name="StudentComboBox" DisplayMemberPath="FullName" />
+        </StackPanel>
+
+        <!-- Выбор причины -->
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,10,0,10">
+            <TextBlock Text="Причина:" VerticalAlignment="Center" Width="120" />
+            <TextBox Name="ReasonTextBox" />
+        </StackPanel>
+
+        <!-- Дата -->
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="0,10,0,10">
+            <TextBlock Text="Дата:" VerticalAlignment="Center" Width="120" />
+            <DatePicker Name="DatePicker" />
+        </StackPanel>
+
+        <!-- Классификация -->
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="0,10,0,10">
+            <TextBlock Text="Классификация:" VerticalAlignment="Center" Width="120" />
+            <ComboBox Name="ClassificationComboBox">
+                <ComboBoxItem Content="Уважительная" />
+                <ComboBoxItem Content="Неуважительная" />
+            </ComboBox>
+        </StackPanel>
+
+        <!-- Кнопки управления -->
+        <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <Button Content="Сохранить" Click="SaveButton_Click" />
+            <Button Content="Отмена" Click="CancelButton_Click" Background="#FF3B3B" />
+        </StackPanel>
+    </Grid>
+</Window>
