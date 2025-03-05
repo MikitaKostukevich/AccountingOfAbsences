@@ -28,6 +28,9 @@
                         FontSize="16" FontWeight="Bold" Padding="10" Margin="0,20"
                         Click="BtnLogin_Click" Cursor="Hand"/>
             </StackPanel>
+
         </Border>
+        <!-- Кнопка открытия окна справки -->
+        <Button Content="Справка" Width="200" Height="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,394,0,0" Click="OpenHelpWindow_Click"/>
     </Grid>
 </Window>

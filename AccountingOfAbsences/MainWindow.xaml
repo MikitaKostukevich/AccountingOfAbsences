@@ -39,7 +39,10 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Content="Изменить пароль" Width="150" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Click="ChangePasswordButton_Click" />
+            <Button Content="Изменить пароль" Width="200" Height="50" FontSize="16" FontWeight="Bold"
+                    HorizontalAlignment="Center" VerticalAlignment="Center" 
+                    Background="red" Foreground="White" BorderBrush="red" BorderThickness="1"
+                    Padding="10" Margin="0, 20, 0, 0" Cursor="Hand" Click="ChangePasswordButton_Click" />
         </StackPanel>
     </Grid>
 </Window>

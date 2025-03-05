@@ -12,55 +12,122 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
+                        <!-- Статистика пропусков -->
                         <RowDefinition Height="Auto"/>
+                        <!-- Фильтры -->
+                        <RowDefinition Height="*"/>
+                        <!-- Таблица записей -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- Кнопки управления -->
                     </Grid.RowDefinitions>
 
+                    <StackPanel Orientation="Horizontal" Background="White" Margin="5" Grid.Row="0">
+                        <TextBlock Text="Общее количество пропусков: " FontSize="14" FontWeight="Bold"/>
+                        <TextBlock Name="TotalAbsencesText" Text="0" FontSize="14" FontWeight="Bold" Foreground="Black" Margin="5,0"/>
+                        <TextBlock Text=" (" FontSize="14"/>
+                        <TextBlock Name="AbsencesPercentageText" Text="0%" FontSize="14" FontWeight="Bold" Foreground="Black"/>
+                        <TextBlock Text=")" FontSize="14"/>
+                    </StackPanel>
+
+
                     <!-- Панель фильтрации -->
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5" Grid.Row="0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5" Grid.Row="1">
                         <TextBlock Text="С даты:" VerticalAlignment="Center" Margin="0,0,5,0" FontWeight="Bold"/>
                         <DatePicker Name="StartDatePicker" Width="120" Margin="0,0,10,0"/>
+
                         <TextBlock Text="По дату:" VerticalAlignment="Center" Margin="0,0,5,0" FontWeight="Bold"/>
                         <DatePicker Name="EndDatePicker" Width="120" Margin="0,0,10,0"/>
+
                         <Button Content="Применить фильтр" Width="150" Height="30" 
-                                Background="#4CAF50" Foreground="White" BorderBrush="#388E3C"
-                                Click="FilterByDate_Click"/>
+                Background="#4CAF50" Foreground="White" BorderBrush="#388E3C"
+                Click="FilterByDate_Click"/>
+
                         <TextBlock Text="ФИО:" VerticalAlignment="Center" Margin="20,0,5,0" FontWeight="Bold"/>
-                        <TextBox Name="SearchTextBox" Width="200" Margin="0,0,10,0" />
+                        <TextBox Name="SearchTextBox" Width="200" Margin="0,0,10,0"/>
+
                         <Button Content="Найти" Width="60" Height="30" 
-                                Background="#2196F3" Foreground="White" BorderBrush="#1976D2" 
-                                Click="SearchByFullName_Click"/>
+                Background="#2196F3" Foreground="White" BorderBrush="#1976D2" 
+                Click="SearchByFullName_Click"/>
                     </StackPanel>
 
                     <!-- Таблица записей -->
                     <DataGrid Name="DataGridRecords" AutoGenerateColumns="False" CanUserAddRows="False" 
-                              Margin="5" Grid.Row="1">
+              Margin="5" Grid.Row="2">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
                             <DataGridTextColumn Header="ФИО" Binding="{Binding Student.FullName}" Width="150"/>
                             <DataGridTextColumn Header="Класс" Binding="{Binding Student.Class.Name}" Width="100"/>
                             <DataGridTextColumn Header="Причина" Binding="{Binding Reason}" Width="200"/>
-                            <DataGridTextColumn Header="Дата" Binding="{Binding Date}" Width="150"/>
+                            <DataGridTextColumn Header="Дата" Binding="{Binding Date, StringFormat=\{0:yyyy-MM-dd\}}" Width="150"/>
                             <DataGridTextColumn Header="Классификация" Binding="{Binding Classification}" Width="150"/>
                         </DataGrid.Columns>
                     </DataGrid>
 
                     <!-- Кнопки управления -->
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10" Grid.Row="2">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10" Grid.Row="3">
                         <Button Content="Добавить классы и учащихся" Width="200" Height="30" 
-                                Background="Pink" Foreground="White" Click="OpenAddClassesAndStudentsWindow_Click"/>
+                Background="Pink" Foreground="White"
+                Click="OpenAddClassesAndStudentsWindow_Click"/>
+
                         <Button Name="BtnEditRecord" Content="Изменить" Width="120" Height="30" 
-                                Background="#FFC107" Foreground="White" Click="BtnEditRecord_Click"/>
+                Background="#FFC107" Foreground="White"
+                Click="BtnEditRecord_Click"/>
+
                         <Button Name="BtnDeleteRecord" Content="Удалить" Width="120" Height="30" 
-                                Background="#F44336" Foreground="White" Click="BtnDeleteRecord_Click"/>
-                        <Button Name="BtnExportToWord" Content="Экспортировать в Word" Width="150" Height="30" 
-                                Background="#4CAF50" Foreground="White" Click="BtnExportToWord_Click"/>
+                Background="#F44336" Foreground="White"
+                Click="BtnDeleteRecord_Click"/>
+                    </StackPanel>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Отчёты">
+                <Grid>
+                    <Grid.Resources>
+                        <Style x:Key="ReportButtonStyle" TargetType="Button">
+                            <Setter Property="Width" Value="200"/>
+                            <Setter Property="Height" Value="40"/>
+                            <Setter Property="Margin" Value="10,10,10,10"/>
+                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Background" Value="#4CAF50"/>
+                            <!-- Зеленый цвет -->
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderBrush" Value="#388E3C"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                            
+                            <Setter Property="Padding" Value="10"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Margin" Value="10,10,10,10"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#45A049"/>
+                                    <!-- Цвет при наведении -->
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" Value="#388E3C"/>
+                                    <!-- Цвет при нажатии -->
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Resources>
+                    <!-- Заголовок "Отчёты" -->
+                    <Label Content="Отчёты" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,20"/>
+
+                    <!-- Контейнер для кнопок -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top"  Margin="0,50,0,0">
+                        <!-- Кнопки с применением стилей -->
+                        <Button Content="Отчет по ученику" Width="200" Height="40" Style="{StaticResource ReportButtonStyle}" Click="GenerateReportByStudent_Click"/>
+                        <Button Content="Статистический отчет" Width="200" Height="40" Style="{StaticResource ReportButtonStyle}" Click="GenerateStatisticalReport_Click"/>
+                        <Button Content="Ведомость пропусков" Width="200" Height="40" Style="{StaticResource ReportButtonStyle}" Click="GenerateAttendanceRegister_Click"/>
+                        <Button Content="Аналитический отчет" Width="200" Height="40" Style="{StaticResource ReportButtonStyle}" Click="GenerateAnalyticalAttendanceReport_Click"/>
                     </StackPanel>
                 </Grid>
             </TabItem>
 
             <!-- Вкладка с диаграммами -->
-            <TabItem Header="Диаграммы">
+            <TabItem Header="Диаграммы" DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -70,6 +137,9 @@
 
                     <!-- Столбчатая диаграмма -->
                     <lvc:CartesianChart Name="BarChart" Grid.Row="0">
+                        <lvc:CartesianChart.Series>
+                            <lvc:ColumnSeries Title="Отсутствия" Values="{Binding BarChartSeries}"/>
+                        </lvc:CartesianChart.Series>
                         <lvc:CartesianChart.AxisX>
                             <lvc:Axis Title="Причины отсутствия" Labels="{Binding AbsenceReasonsKeys}"/>
                         </lvc:CartesianChart.AxisX>
@@ -79,21 +149,28 @@
                     </lvc:CartesianChart>
 
                     <!-- Круговая диаграмма -->
-                    <lvc:PieChart Name="PieChart" Grid.Row="1"/>
+                    <lvc:PieChart Name="PieChart" Grid.Row="1">
+                        <lvc:PieChart.Series>
+                            <lvc:PieSeries Title="Причины" Values="{Binding PieChartSeries}"/>
+                        </lvc:PieChart.Series>
+                    </lvc:PieChart>
 
+                    <!-- Линейная диаграмма -->
                     <lvc:CartesianChart Name="LineChart" Grid.Row="2">
                         <lvc:CartesianChart.Series>
-                            <lvc:LineSeries Title="Отсутствия по дням" Values="{Binding AbsenceTrendValues}" PointGeometrySize="10"/>
+                            <lvc:LineSeries Title="Динамика" Values="{Binding LineChartSeries}" PointGeometrySize="10"/>
                         </lvc:CartesianChart.Series>
                         <lvc:CartesianChart.AxisX>
-                            <lvc:Axis Title="Дата" Labels="{Binding AbsenceTrendDates}" />
+                            <lvc:Axis Title="Дата" Labels="{Binding AbsenceTrendDates}"/>
                         </lvc:CartesianChart.AxisX>
                         <lvc:CartesianChart.AxisY>
-                            <lvc:Axis Title="Количество отсутствий" />
+                            <lvc:Axis Title="Количество"/>
                         </lvc:CartesianChart.AxisY>
                     </lvc:CartesianChart>
                 </Grid>
             </TabItem>
+
+
         </TabControl>
     </Grid>
 </Window>

@@ -59,5 +59,13 @@ namespace AccountingOfAbsences
                 MessageBox.Show($"Произошла ошибка при входе в систему: {ex.Message}");
             }
         }
+        // Обработчик события открытия окна справки
+        private void OpenHelpWindow_Click(object sender, RoutedEventArgs e)
+        {
+            // Создаем экземпляр окна справки и открываем его
+            HelpWindow helpWindow = new HelpWindow();
+            helpWindow.ShowDialog();
+        }
+
     }
 }
