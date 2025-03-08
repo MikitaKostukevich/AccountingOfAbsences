@@ -57,6 +57,5 @@ namespace AccountingOfAbsences
                 MessageBox.Show($"An error occurred: {ex.Message}", "Exception", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
     }
 }
